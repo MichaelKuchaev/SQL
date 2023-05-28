@@ -1,38 +1,38 @@
-create database home_work_3;
+CREATE DATEBASE home_work_3;
  
-show databases;
+SHOW DATEBASE;
 
-use home_work_3;
+USE home_work_3;
 
-create table salespeople 
+CREATE TABLE salespeople 
 (
-snum int primary key not null,
-sname varchar (50) not null,
-city varchar(50) not null,
-comn varchar(10) not null 
+snum INT PRIMARY KEY NOT NULL,
+sname VARCHAR (50) NOT NULL,
+city VARCHAR (50) NOT NULL,
+comn VARCHAR (10) NOT NULL 
 );
 
-insert into salespeople (snum, sname, city, comn)
-values
+INSERT INTO salespeople (snum, sname, city, comn)
+VALUES
 (1001, 'Peel', 'London', '.12'),
 (1002, 'Serres', 'London', '.13'),
 (1004, 'Motika', 'London', '.11'),
 (1007, 'Rifkin', 'Barcelona', '.15'),
 (1003, 'Axelrod', 'New York', '.10');
 
-select * from salespeople;
+SELECT * FROM salespeople;
 
-create table customers 
+CREATE TABLE customers 
 (
-cnum int primary key not null,
-cname varchar (50) not null,
-city varchar(50) not null,
-rating int not null,
-snum int not null  
+cnum INT PRIMARY KEY NOT NULL,
+cname VARCHAR (50) NOT NULL,
+city VARCHAR (50) NOT NULL,
+rating INT NOT NULL,
+snum INT NOT NULL  
 );
 
-insert into customers (cnum, cname, city, rating, snum)
-values
+INSERT INTO customers (cnum, cname, city, rating, snum)
+VALUES
 (2001, 'Hoffman', 'London', 100, 1001),
 (2002, 'Giovanni', 'Rome', 200, 1003),
 (2003, 'Liu', 'SanJose', 200, 1002),
@@ -41,19 +41,19 @@ values
 (2008, 'Cisneros', 'SanJose', 300, 1007),
 (2007, 'Pereira', 'Rome', 100, 1004);
 
-select * from customers;
+SELECT * FROM customers;
 
-create table orders 
+CREATE TABLE orders 
 (
-onum int primary key not null,
-amt double not null,
-odate date not null,
-cnum int not null,
-snum int not null  
+onum INT PRIMARY KEY NOT NULL,
+amt DOUBLE NOT NULL,
+odate DATE NOT NULL,
+cnum INT NOT NULL,
+snum INT NOT NULL  
 );
 
-insert into orders (onum, amt, odate, cnum, snum)
-values
+INSERT INTO orders (onum, amt, odate, cnum, snum)
+VALUES
 (3001, 18.69, '1990-03-10', 2008, 1007),
 (3003, 767.19, '1990-03-10', 2001, 1001),
 (3002, 1900.10, '1990-03-10', 2007, 1004),
@@ -65,71 +65,71 @@ values
 (3010, 1309.95, '1990-06-10', 2004, 1002),
 (3011, 9891.88, '1990-06-10', 2006, 1001);
 
-select * from orders;
+SELECT * FROM orders;
 
 /* 1. Напишите запрос, который вывел бы таблицу со столбцами в 
 следующем порядке: city, sname, snum, comm. (к первой или второй таблице, используя SELECT)*/
 
-select distinct city, sname, snum, comn 
-from salespeople;
+SELECT DISTINCT city, sname, snum, comn 
+FROM salespeople;
 
 /* 2. Напишите команду SELECT, которая вывела бы оценку(rating), 
 сопровождаемую именем каждого заказчика в городе San Jose. (“заказчики”)*/
 
-select distinct cname, rating 
-from customers
-where city='SanJose';
+SELECT DISTINCT cname, rating 
+FROM customers
+WHERE city='SanJose';
 
 /* 3. Напишите запрос, который вывел бы значения snum всех продавцов из таблицы 
 заказов без каких бы то ни было повторений. (уникальные значения в  “snum“ “Продавцы”)*/
 
-select distinct snum 
-from orders;
+SELECT DISTINCT snum 
+FROM orders;
 
 /* 4. Напишите запрос, который бы выбирал заказчиков, чьи имена начинаются с буквы G. 
 Используется оператор "LIKE": (“заказчики”)*/
 
-select cname 
-from customers
-where cname like 'G%';
+SELECT cname 
+FROM customers
+WHERE cname LIKE 'G%';
 
 /* 5. Напишите запрос, который может дать вам все заказы со значениями 
 суммы выше чем $1,000. (“Заказы”, “amt”  - сумма)*/
 
-select *
-from orders
-where amt > 1000;
+SELECT *
+FROM orders
+WHERE amt > 1000;
 
 /* 6. Напишите запрос который выбрал бы наименьшую сумму заказа.
  (Из поля “amt” - сумма в таблице “Заказы” выбрать наименьшее значение)*/
  
-select MIN(amt) as 'Минимальный заказ'
-from orders;
+SELECT MIN(amt) AS 'Минимальный заказ'
+FROM orders;
 
 /* 7. Напишите запрос к таблице “Заказчики”, который может показать всех заказчиков, 
 у которых рейтинг больше 100 и они находятся не в Риме.*/
 
-select * 
-from customers
-where rating>100 && city!='Rome';
+SELECT * 
+FROM customers
+WHERE rating>100 && city!='Rome';
 
 # Создаем таблицу из семинара
 
-create table work_table 
+CREATE TABLE work_table 
 (
-id INT not null auto_increment primary key,
-first_name varchar(50) not null,
-surname varchar(50) not null,
-specialty varchar(50) not null,
-seniority int not null,
-salary int not null,
-age int not null	 
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+first_name VARCHAR (50) NOT NULL,
+surname VARCHAR (50) NOT NULL,
+specialty VARCHAR (50) NOT NULL,
+seniority INT NOT NULL,
+salary INT NOT NULL,
+age INT NOT NULL	 
 );
 
-select * from work_table;
+SELECT * FROM work_table;
 
-insert into work_table (first_name, surname, specialty, seniority, salary, age)
-values
+INSERT INTO work_table (first_name, surname, specialty, seniority, salary, age)
+VALUES
 ("Вася", "Васькин", "начальник", 40, 100000, 60),
 ("Петя", "Петькин", "начальник", 8, 70000, 30),
 ("Катя", "Каткина", "инженер", 2, 70000, 25),
@@ -145,25 +145,25 @@ values
 
 /* 1. Отсортируйте поле “зарплата” в порядке убывания и возрастания*/
 
-select * 
-from work_table
-order by salary; # по возрастанию 
+SELECT * 
+FROM work_table
+ORDER BY salary; # по возрастанию 
 
-select * 
-from work_table
-order by salary desc; # по убыванию 
+SELECT * 
+FROM work_table
+ORDER BY salary DESC; # по убыванию 
 
 /* 2. Отсортируйте по возрастанию поле “Зарплата” и выведите 5 строк с 
 наибольшей заработной платой (возможен подзапрос)*/
 
-select * 
-from work_table
-order by salary desc
-limit 5;
+SELECT * 
+FROM work_table
+ORDER BY salary DESC
+LIMIT 5;
 
 /* 3. Выполните группировку всех сотрудников по специальности , суммарная зарплата которых превышает 100000*/
 
-select specialty, sum(salary) sum_salary 
-from work_table
-group by specialty 
-having sum_salary > 100000;
+SELECT specialty, sum(salary) sum_salary 
+FROM work_table
+GROUP BY specialty 
+HAVING sum_salary > 100000;
